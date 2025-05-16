@@ -8,9 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install deps & build
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          run_install: true
+      - name: Build
         run: |
-          pnpm ci
           pnpm run generate
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
